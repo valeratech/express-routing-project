@@ -22,20 +22,24 @@ const app = express();
 //  using the default has been deprecated.
 app.use(bodyParser.urlencoded({extended: false}))
 
-// The root / will always be a catch-all for request when the .use method is called. If we have a middleware that should be applied to all requests,
-// we would simply add it on top of all the other middleware. If we don't add a filter (a specific URL) or a filter
-// that matches all requests then this middleware will always run first. Calling the next function allows the request
-// to be able to continue.
+// The root / will always be a catch-all for request when the .use method is called since it handles all http methods.
+// If we have a middleware that should be applied to all requests, we would simply add it on top of all the other
+// middleware. If we don't add a filter (a specific URL) or a filter that matches all requests then this middleware will
+// always run first. Calling the next function allows the request to be able to continue.
 
 
 // Order will matter when specifying .get over .use in your Router() functions
-app.use(adminRoutes);
+app.use('/admin', adminRoutes);
 
 app.use(shopRoutes);
 
+app.use((req, res, next) => {
+    res.status(404).send('<h1>Page Not Found</h1>');
+})
+
 
 // This method does the same as the 2 lines below it
-app.listen(3000);
+app.listen(3005);
 
 // const server = http.createServer(app);
 // server.listen(3000);
