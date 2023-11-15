@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const rootDir = require('../util/path');
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.get('/add-product', (req, res, next) => {
 
     // Allows the request to continue to the next middleware in the line.
     // If a response is sent in this current middleware, the next middleware doesn't fire off. Don't call next()!
-    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
 });
 
 // A route method is derived from one of the HTTP methods, and is attached to an instance of the express class.
