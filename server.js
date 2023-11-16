@@ -24,6 +24,13 @@ const app = express();
 //  using the default has been deprecated.
 app.use(bodyParser.urlencoded({extended: false}))
 
+// right, now we find that main.css file because now this path can be resolved because we request a file
+// here and if I omit .css, it therefore will fail but if I add it again, this is handled by the static middleware and
+// forwards the request to the public folder.
+// Express looks up the files relative to the static directory,
+// so the name of the static directory is not part of the URL - meaning you don't have to specify '/public'.
+app.use(express.static(path.join(__dirname, 'public')));
+
 // The root / will always be a catch-all for request when the .use method is called since it handles all http methods.
 // If we have a middleware that should be applied to all requests, we would simply add it on top of all the other
 // middleware. If we don't add a filter (a specific URL) or a filter that matches all requests then this middleware will
