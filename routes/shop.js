@@ -13,7 +13,8 @@ router.get('/', (req, res, next) => {
     // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // Automatically sets a default Content-Type if not specified
     res.render('shop', {
         pageTitle: 'Shop',
-        products: products
+        products: products,
+        path: '/'
     });
 })
 

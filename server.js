@@ -13,6 +13,8 @@ const app = express();
 //So now we're telling express that we want to compile dynamic templates with the EJS engine and where to find these
 // templates.
 app.set('view engine', 'ejs');
+// Default setting - Can omit the following code:
+app.set('views', 'views');
 
 // Request doesn't try to parse the incoming request body by default. We need to register a parser by adding another
 // parser middleware. Typically, you need to do this FIRST before your route handling middlewares because the parsing

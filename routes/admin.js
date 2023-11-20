@@ -20,7 +20,8 @@ router.get('/add-product', (req, res, next) => {
     // The OS filesystem absolute path is required and can be achieved with the path module
     // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
     res.render('add-product', {
-        pageTitle: 'Add Product'
+        pageTitle: 'Add Product',
+        path: '/admin/add-product'
     });
 });
 
@@ -37,7 +38,7 @@ router.post('/add-product', (req, res, next) => {
 // Alternate Methods of Exporting
 module.exports = {
     routes : router,
-    products : products
+    products
 }
 
 // module.exports = router;
