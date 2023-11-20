@@ -10,6 +10,10 @@ const rootDir = require('./util/path');
 // Initialize express object and pass it in the createServer method as a valid handler
 const app = express();
 
+//So now we're telling express that we want to compile dynamic templates with the EJS engine and where to find these
+// templates.
+app.set('view engine', 'ejs');
+
 // Request doesn't try to parse the incoming request body by default. We need to register a parser by adding another
 // parser middleware. Typically, you need to do this FIRST before your route handling middlewares because the parsing
 // of the body should be done no matter where your request ends up
@@ -38,12 +42,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Order will matter when specifying .get over .use in your Router() functions
-app.use('/admin', adminRoutes);
+// Only routes starting with /admin will go into the admin routes file and will also omit or ignore '/admin' portion
+// in the url when it tries to match these routes, so now /add-product will match the /admin/add-product route because
+// /admin was already stripped out
+
+// So this filtering mechanism here in app.js allows us to put a common starting segment for our path which all routes
+// in a given file use to outsource that into this app.js file so that we don't have to repeat it for all the routes
+// in our routes .js files middleware functions.
+app.use('/admin', adminRoutes.routes);
 
 app.use(shopRoutes);
 
+// Catch all routes that aren't specified and redirect to 404.html
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
+    // res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
+    res.status(404).render('404', {pageTitle: 'Page Not Found'})
 })
 
 
