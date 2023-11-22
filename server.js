@@ -11,7 +11,7 @@ const rootDir = require('./util/path');
 const app = express();
 
 //So now we're telling express that we want to compile dynamic templates with the EJS engine and where to find these
-// templates.
+// templates. The app.set() function is used to assign the setting name to value.
 app.set('view engine', 'ejs');
 // Default setting - Can omit the following code:
 app.set('views', 'views');
@@ -30,11 +30,9 @@ app.set('views', 'views');
 //  using the default has been deprecated.
 app.use(bodyParser.urlencoded({extended: false}))
 
-// right, now we find that main.css file because now this path can be resolved because we request a file
-// here and if I omit .css, it therefore will fail but if I add it again, this is handled by the static middleware and
-// forwards the request to the public folder.
-// Express looks up the files relative to the static directory,
-// so the name of the static directory is not part of the URL - meaning you don't have to specify '/public'.
+// This is handled by the static middleware and forwards the request to the public folder.
+// Express looks up the files relative to the static directory, so the name of the static directory is not part of the
+// URL - meaning you don't have to specify '/public'.
 app.use(express.static(path.join(__dirname, 'public')));
 
 // The root / will always be a catch-all for request when the .use method is called since it handles all http methods.
@@ -51,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // So this filtering mechanism here in app.js allows us to put a common starting segment for our path which all routes
 // in a given file use to outsource that into this app.js file so that we don't have to repeat it for all the routes
 // in our routes .js files middleware functions.
+// Simply put this is not a directory but just the path that we choose to create.
 app.use('/admin', adminRoutes.routes);
 
 app.use(shopRoutes);
@@ -58,7 +57,7 @@ app.use(shopRoutes);
 // Catch all routes that aren't specified and redirect to 404.html
 app.use((req, res, next) => {
     // res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
-    res.status(404).render('404', {pageTitle: 'Page Not Found'})
+    res.status(404).render('404', {pageTitle: 'Page Not Found', path: null})
 })
 
 
