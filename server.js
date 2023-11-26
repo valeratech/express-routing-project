@@ -1,20 +1,23 @@
-// const http = require('http');
 const express = require('express');
 const bodyParser = require("body-parser");
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const path = require('path');
-const rootDir = require('./util/path');
+const errorController = require('./controllers/error')
 
 // https://github.com/expressjs/express/tree/master/lib
 // Initialize express object and pass it in the createServer method as a valid handler
 const app = express();
 
-//So now we're telling express that we want to compile dynamic templates with the EJS engine and where to find these
-// templates. The app.set() function is used to assign the setting name to value.
+//Tell express to compile dynamic templates with the EJS engine and list where to find these templates.
+// The app.set() function is used to assign the setting name to value.
 app.set('view engine', 'ejs');
 // Default setting - Can omit the following code:
 app.set('views', 'views');
+
+// The middleware 'use' method can be used after we create the app object but before we passed it to create server
+// We can then use the app and call a method "use" which is defined by the express framework allowing adding new
+// middleware functions
 
 // Request doesn't try to parse the incoming request body by default. We need to register a parser by adding another
 // parser middleware. Typically, you need to do this FIRST before your route handling middlewares because the parsing
@@ -55,14 +58,11 @@ app.use('/admin', adminRoutes.routes);
 app.use(shopRoutes);
 
 // Catch all routes that aren't specified and redirect to 404.html
-app.use((req, res, next) => {
-    // res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
-    res.status(404).render('404', {pageTitle: 'Page Not Found', path: null})
-})
+app.use(errorController.get404);
 
 
 // This method does the same as the 2 lines below it
-app.listen(3005);
+app.listen(3000);
 
 // const server = http.createServer(app);
 // server.listen(3000);
