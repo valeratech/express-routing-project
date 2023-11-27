@@ -1,5 +1,6 @@
 const adminRoutes = require("../routes/admin");
-const products = [];
+const { createProduct, fetchAllProducts } = require('../models/product');
+// const products = [];
 
 // Alternate method of exporting:
 // exports.getAddProducts() {}
@@ -21,7 +22,9 @@ function postAddProducts (req, res, next) {
     // The req.body property contains key-value pairs of data submitted in the request body. By default, it is undefined
     // and is populated when you use a middleware called body-parsing such as express.urlencoded() or express.json().
     console.log(req.body);
-    products.push({title: req.body.title});
+    // products.push({title: req.body.title});
+    const product = createProduct(req.body.title);
+    product.save();
     res.redirect('/');
 }
 
@@ -32,6 +35,8 @@ function displayProducts(req, res, next) {
     // res.setHeader() <<< This is possible in Express
     // res.write() <<< This is also possible in Express
     // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // Automatically sets a default Content-Type if not specified
+    // const products = adminRoutes.products;
+    const products = fetchAllProducts();
     res.render('shop', {
         pageTitle: 'Shop',
         products: products,
