@@ -1,11 +1,7 @@
 const adminRoutes = require("../routes/admin");
 const { createProduct, fetchAllProducts } = require('../models/product');
-// const products = [];
 
-// Alternate method of exporting:
-// exports.getAddProducts() {}
-
-function getAddProducts (req, res, next) {
+function getAddProducts(req, res, next) {
     // Allows the request to continue to the next middleware in the line.
     // If a response is sent in this current middleware, the next middleware doesn't fire off. Don't call next()!
     // next();
@@ -18,17 +14,22 @@ function getAddProducts (req, res, next) {
     });
 }
 
-function postAddProducts (req, res, next) {
+async function postAddProducts(req, res, next) {
     // The req.body property contains key-value pairs of data submitted in the request body. By default, it is undefined
     // and is populated when you use a middleware called body-parsing such as express.urlencoded() or express.json().
-    console.log(req.body);
     // products.push({title: req.body.title});
-    const product = createProduct(req.body.title);
-    product.save();
-    res.redirect('/');
+    try {
+        console.log(req.body);
+        const product = createProduct(req.body.title);
+        await product.save();
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
-function displayProducts(req, res, next) {
+async function displayProducts(req, res, next) {
     // Below is a representation of a Controller: We're interacting with our data and then we are returning a view
     // this in-between logic that makes up a controller.
     // Express doesn't send a default response so you must explicitly state it
@@ -36,12 +37,18 @@ function displayProducts(req, res, next) {
     // res.write() <<< This is also possible in Express
     // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // Automatically sets a default Content-Type if not specified
     // const products = adminRoutes.products;
-    const products = fetchAllProducts();
-    res.render('shop', {
-        pageTitle: 'Shop',
-        products: products,
-        path: '/'
-    });
+    try {
+        const products = await fetchAllProducts();
+        console.log(products);
+        res.render('shop', {
+            pageTitle: 'Shop',
+            products: products,
+            path: '/'
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
-module.exports = {getAddProducts, postAddProducts, displayProducts};
+module.exports = { getAddProducts, postAddProducts, displayProducts };
