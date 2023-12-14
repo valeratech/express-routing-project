@@ -4,7 +4,7 @@ const productsController = require('../controllers/products');
 const router = express.Router();
 
 // data is controlled and displayed in a controllers directory by implementing MVC
-const products = productsController.products
+// const products = productsController.products
 
 // We can use the same path but only with different METHODS (ex. GET | POST)
 router.get('/add-product', productsController.getAddProducts);

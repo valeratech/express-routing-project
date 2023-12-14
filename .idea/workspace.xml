@@ -7,9 +7,11 @@
     <list default="true" id="ef6585fc-40a5-4131-a64d-697b940bcb41" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/products.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/shop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/path.js" beforeDir="false" afterPath="$PROJECT_DIR$/util/path.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/home/ryanv/JavaScript/Docs/04-refactored-code/models/product.js",
+    "last_opened_file_path": "/home/ryanv/JavaScript/Exercises/React/react-state-management-exercises",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -79,7 +81,13 @@
       <workItem from="1700525214088" duration="24000" />
       <workItem from="1700546855981" duration="10316000" />
       <workItem from="1700707228356" duration="8792000" />
-      <workItem from="1701042316923" duration="22978000" />
+      <workItem from="1701042316923" duration="24693000" />
+      <workItem from="1701204480136" duration="16097000" />
+      <workItem from="1701370022300" duration="1822000" />
+      <workItem from="1701550475724" duration="592000" />
+      <workItem from="1701551077621" duration="719000" />
+      <workItem from="1701813910372" duration="16331000" />
+      <workItem from="1702496322337" duration="1970000" />
     </task>
     <servers />
   </component>

@@ -30,7 +30,7 @@ app.set('views', 'views');
 // The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false)
 //  or the qs library (when true). The “extended” syntax allows for rich objects and arrays to be encoded into the
 //  URL-encoded format, allowing for a JSON-like experience with URL-encoded. The extended key defaults to true, but
-//  using the default has been deprecated.
+//  using the default has been DEPRECATED.
 app.use(bodyParser.urlencoded({extended: false}))
 
 // This is handled by the static middleware and forwards the request to the public folder.
@@ -62,7 +62,7 @@ app.use(errorController.get404);
 
 
 // This method does the same as the 2 lines below it
-app.listen(3000);
+app.listen(5000);
 
 // const server = http.createServer(app);
 // server.listen(3000);
