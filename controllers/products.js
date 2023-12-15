@@ -30,26 +30,30 @@ async function postAddProducts(req, res, next) {
     }
 }
 
-async function displayProductsPage(req, res, next) {
-    // Below is a representation of a Controller: We're interacting with our data and then we are returning a view
-    // this in-between logic that makes up a controller.
-    // Express doesn't send a default response so you must explicitly state it
-    // res.setHeader() <<< This is possible in Express
-    // res.write() <<< This is also possible in Express
-    // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // Automatically sets a default Content-Type if not specified
-    // const products = adminRoutes.products;
-    try {
-        const products = await fetchAllProducts();
+// async function displayProductsPage(req, res, next) {
+//     // Below is a representation of a Controller: We're interacting with our data and then we are returning a view
+//     // this in-between logic that makes up a controller.
+//     // Express doesn't send a default response so you must explicitly state it
+//     // res.setHeader() <<< This is possible in Express
+//     // res.write() <<< This is also possible in Express
+//     // res.sendFile(path.join(rootDir, 'views', 'shop.html')); // Automatically sets a default Content-Type if not specified
+//     // const products = adminRoutes.products;
+//     try {
+//         const products = await fetchAllProducts();
+//
+//         res.render('shop', {
+//             pageTitle: 'Shop',
+//             products: products,
+//             path: '/'
+//         });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send('Internal Server Error');
+//     }
+// }
 
-        res.render('shop', {
-            pageTitle: 'Shop',
-            products: products,
-            path: '/'
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-}
 
-module.exports = { getAddProducts, postAddProducts, displayProducts: displayProductsPage };
+
+
+
+module.exports = { getAddProducts, postAddProducts };

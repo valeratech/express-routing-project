@@ -1,9 +1,18 @@
 const express = require('express');
-const productsController = require("../controllers/products");
+const shopController = require('../controllers/shop');
+
+// Data is controlled and displayed in a controllers directory by implementing MVC
 
 const router = express.Router();
 
-// Data is controlled and displayed in a controllers directory by implementing MVC
-router.get('/', productsController.displayProducts);
+router.get('/', shopController.getIndex);
+
+router.get('/products', shopController.getProducts);
+
+router.get('/cart', shopController.getCart);
+
+router.get('/orders', shopController.getOrders);
+
+router.get('/checkout', shopController.getCheckout);
 
 module.exports = router;
