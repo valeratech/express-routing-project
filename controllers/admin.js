@@ -32,9 +32,10 @@ async function postAddProducts(req, res, next) {
     try {
         const title = req.body.title;
         const imageUrl = req.body.imageUrl;
-        const price = req.body.price;
         const description = req.body.description;
-        const product = createProduct(req.body.title);
+        const price = req.body.price;
+
+        const product = createProduct(title, imageUrl, description, price);
         await product.save();
         res.redirect('/');
     } catch (error) {

@@ -33,9 +33,12 @@ const getProductsFromFile = async () => {
 // The save method is a part of the product object. When called, it pushes the current instance of the product (this)
 // into the products array.
 
-const createProduct = (title) => {
+const createProduct = (title, imageUrl, description, price) => {
     return {
         title,
+        imageUrl,
+        description,
+        price,
 
         save: async function () {
             try {
