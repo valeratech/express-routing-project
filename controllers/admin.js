@@ -60,9 +60,9 @@ async function getProducts (req, res, next) {
 
         // The OS filesystem absolute path is required and can be achieved with the path module
         // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
-        res.render('admin/add-product', {
+        res.render('admin/products', {
             products,
-            pageTitle: 'Add Product',
+            pageTitle: 'Admin Product',
             path: '/admin/products',
         });
     } catch (error) {
@@ -93,4 +93,4 @@ async function getProducts (req, res, next) {
 // }
 
 
-module.exports = { getAddProducts, postAddProducts };
+module.exports = { getAddProducts, postAddProducts, getProducts };
