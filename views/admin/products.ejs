@@ -27,8 +27,19 @@
                         </p>
                     </div>
                     <div class="card__actions">
-                        <form action="/add-to-cart" method="POST">
-                            <button class="btn">Add to Cart</button>
+                        <!-- To edit we need to make sure that clicking this button sends a get request and get onto
+                        another page using an anchor element that leads us to /admin/edit-product. We also want to
+                        make sure that we go to a route where we know which product to edit and pass a dynamic ID.
+                        We can then retrieve that ID in the route that we're loading so that we know which product
+                        we need to fetch from the database or from a file. -->
+                        <a href="/admin/edit-product" class="btn">Edit</a>
+                        <!-- A delete process should not send a get request to some route, instead we
+                        simply wrap this in a form which leads to admin delete product and sends a post requests
+                        there to indicate that we really want to change something and not just load something or
+                        display something and then I wrap my button in there and give it the type submit so that
+                        it does submit this. -->
+                        <form action="/admin/delete-product" method="POST">
+                            <button class="btn">Delete</button>
                         </form>
                     </div>
                 </article>
