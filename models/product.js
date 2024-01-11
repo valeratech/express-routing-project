@@ -19,7 +19,6 @@ const filePath = path.join(
 const getProductsFromFile = async () => {
     try {
         const fileContent = await fs.readFile(filePath, 'utf8');
-        console.log(`my products ${fileContent}`);
         return JSON.parse(fileContent);
     } catch (error) {
         console.log('this gets executed')
@@ -39,6 +38,7 @@ const createProduct = (title, imageUrl, description, price) => {
         imageUrl,
         description,
         price,
+        id: Math.random().toString(),
 
         save: async function () {
             try {
@@ -58,6 +58,7 @@ const createProduct = (title, imageUrl, description, price) => {
 const fetchAllProducts = async () => {
     return await getProductsFromFile();
 };
+
 
 // This exports the createProduct and fetchAllProducts functions as an object. It makes these functions accessible when
 // you import this module into other files.

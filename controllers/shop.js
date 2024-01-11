@@ -38,6 +38,7 @@ async function getProducts (req, res, next) {
     }
 };
 
+
 async function getIndex (req, res, next) {
     try {
         const products = await fetchAllProducts();
