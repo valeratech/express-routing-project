@@ -37,22 +37,26 @@ async function getProducts (req, res, next) {
     }
 };
 
-function getProduct(req, res, next) {
+async function getProduct(req, res, next) {
     // The name you use here after the colon in your route '/products/:productId' is the name by which you can extract
     // the data on this params object (req.params.productId).
     const prodId = req.params.productId;
-    Product.findById(prodId);
-    res.redirect('/');
+    const product = await Product.findProductById(prodId);
+    console.log(product);
+    res.render('shop/product-details', {
+        product,
+        path: '/products',
+        pageTitle: product.title,
+    });
 }
 
 async function getIndex (req, res, next) {
     try {
         const products = await Product.fetchAllProducts();
-
         res.render('shop/index', {
-            pageTitle: 'Shop',
             products: products,
-            path: '/'
+            path: '/',
+            pageTitle: 'Shop',
         });
     } catch (error) {
         console.error(error);

@@ -10,7 +10,7 @@ router.get('/', shopController.getIndex);
 router.get('/products', shopController.getProducts);
 
 // So if you had a dynamic segment " : " and a specific route, you would have to put the more specific route first
-router.get('/products/:productId', shopController.getProductz);
+router.get('/products/:productId', shopController.getProduct);
 
 router.get('/cart', shopController.getCart);
 

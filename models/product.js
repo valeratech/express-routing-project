@@ -59,11 +59,10 @@ const fetchAllProducts = async () => {
     return await getProductsFromFile();
 };
 
-async function findById(id) {
+async function findProductById(id) {
     try {
         const products = await getProductsFromFile();
         const product = products.find(p => p.id === id);
-        console.log(product);
         return product;
     } catch (error) {
         console.log(error);
@@ -72,4 +71,4 @@ async function findById(id) {
 
 // This exports the createProduct and fetchAllProducts functions as an object. It makes these functions accessible when
 // you import this module into other files.
-module.exports = { createProduct, fetchAllProducts, findById };
+module.exports = { createProduct, fetchAllProducts, findProductById };
