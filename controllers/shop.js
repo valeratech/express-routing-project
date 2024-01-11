@@ -71,6 +71,11 @@ function getCart (req, res, next) {
     });
 };
 
+function postCart (req, res, next) {
+    const prodId = req.body.productId;
+    res.redirect('/cart')
+}
+
 function getOrders (req, res, next) {
     res.render('shop/orders', {
         path: '/orders',
@@ -85,4 +90,4 @@ function getCheckout (req, res, next) {
     });
 };
 
-module.exports = { getProduct, getProducts, getIndex, getCart, getOrders, getCheckout }
+module.exports = { getProduct, getProducts, getIndex, getCart, getOrders, getCheckout, postCart }

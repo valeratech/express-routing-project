@@ -22,7 +22,11 @@
                             <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
-                            <button class="btn">Add to Cart</button>
+                        <!-- If you have an include in a for loop or in a loop in general then the local variable -->
+                        <!-- available in that loop unfortunately doesn't get that variable by default. You have to -->
+                        <!-- pass it by adding a second argument to the include function where you again pass an -->
+                        <!-- object and add that variable again.-->
+                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                         </div>
                     </article>
                 <% } %>
