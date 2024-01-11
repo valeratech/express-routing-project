@@ -1,5 +1,4 @@
 const Product = require('../models/product');
-const {fetchAllProducts} = require("../models/product");
 
 // async function displayProductsPage(req, res, next) {
 //     // Below is a representation of a Controller: We're interacting with our data and then we are returning a view
@@ -25,7 +24,7 @@ const {fetchAllProducts} = require("../models/product");
 
 async function getProducts (req, res, next) {
     try {
-        const products = await fetchAllProducts();
+        const products = await Product.fetchAllProducts();
 
         res.render('shop/product-list', {
             pageTitle: 'All Products',
@@ -38,9 +37,17 @@ async function getProducts (req, res, next) {
     }
 };
 
+function getProduct(req, res, next) {
+    // The name you use here after the colon in your route '/products/:productId' is the name by which you can extract
+    // the data on this params object (req.params.productId).
+    const prodId = req.params.productId;
+    Product.findById(prodId);
+    res.redirect('/');
+}
+
 async function getIndex (req, res, next) {
     try {
-        const products = await fetchAllProducts();
+        const products = await Product.fetchAllProducts();
 
         res.render('shop/index', {
             pageTitle: 'Shop',
@@ -74,4 +81,4 @@ function getCheckout (req, res, next) {
     });
 };
 
-module.exports = { getProducts, getIndex, getCart, getOrders, getCheckout }
+module.exports = { getProduct, getProducts, getIndex, getCart, getOrders, getCheckout }
